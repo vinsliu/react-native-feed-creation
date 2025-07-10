@@ -39,11 +39,8 @@ function Home() {
         },
         tabBarActiveTintColor: "#25A0B0",
         tabBarInactiveTintColor: "#000",
-        headerTransparent: true,
-        headerTitleAlign: "right",
+        headerTransparent: false,
         headerTitleStyle: {
-          paddingTop: 140,
-          paddingBottom: 40,
           textAlign: "left",
           fontWeight: "bold",
         },
