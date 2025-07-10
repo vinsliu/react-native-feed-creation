@@ -1,7 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { Feed } from "./src/surfaces/Feed";
 import { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
@@ -12,6 +11,12 @@ import { Favorites } from "./src/surfaces/Favorites";
 import { Profile } from "./src/surfaces/Profile";
 import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import {
+  Poppins_400Regular,
+  Poppins_700Bold,
+  useFonts,
+} from "@expo-google-fonts/poppins";
+import AppLoading from "expo-app-loading";
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -30,10 +35,18 @@ function Home() {
           } else if (route.name === "Profile") {
             iconName = focused ? "person-circle" : "person-circle-outline";
           }
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return <Ionicons name={iconName as any} size={size} color={color} />;
         },
         tabBarActiveTintColor: "#25A0B0",
         tabBarInactiveTintColor: "#000",
+        headerTransparent: true,
+        headerTitleAlign: "right",
+        headerTitleStyle: {
+          paddingTop: 140,
+          paddingBottom: 40,
+          textAlign: "left",
+          fontWeight: "bold",
+        },
       })}
     >
       <Tab.Screen name="Feed" component={Feed} />
@@ -47,6 +60,14 @@ function Home() {
 
 export default function App() {
   const [userLoggedIn, setIsUserLoggedIn] = useState(true);
+  let [fontsLoaded] = useFonts({
+    Poppins_400Regular,
+    Poppins_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
   return (
     <SafeAreaProvider>
       <NavigationContainer>
