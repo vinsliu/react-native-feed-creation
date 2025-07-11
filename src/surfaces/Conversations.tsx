@@ -5,7 +5,6 @@ import { Text, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ListOfConvos } from "../components/ListOfConvos";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { NativeStackScreenProps } from "react-native-screens/lib/typescript/native-stack/types";
 
 type ConversationsStackParamList = {
   Conversations: undefined;
@@ -48,7 +47,7 @@ export const Conversations = ({ navigation }: Props) => {
           borderWidth: 1,
           borderColor: "#EEF2E2",
           position: "absolute",
-          top: 210,
+          top: 280,
           left: -160,
           transform: [{ rotate: "-45deg" }],
         }}
@@ -61,8 +60,9 @@ export const Conversations = ({ navigation }: Props) => {
           borderWidth: 1,
           borderColor: "#EEF2E2",
           position: "absolute",
-          top: 210,
+          top: 350,
           left: -160,
+          backgroundColor: "#E1F6F4",
           transform: [{ rotate: "-45deg" }],
         }}
       />

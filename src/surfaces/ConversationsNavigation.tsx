@@ -1,6 +1,8 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { Conversations } from "./Conversations";
 import { Messages } from "./Messages";
+import { useState } from "react";
+import { ConversationContext } from "../context";
 
 type ConversationsStackParamList = {
   Conversations: undefined;
@@ -10,39 +12,47 @@ type ConversationsStackParamList = {
 const Stack = createStackNavigator<ConversationsStackParamList>();
 
 export const ConversationsNavigation = () => {
+  const [conversationId, setConversationId] = useState(null);
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerTintColor: "#000",
-        headerTransparent: true,
-        headerTitleAlign: "left",
-        headerStyle: {
-          height: 100,
-        },
-        headerTitleStyle: {
-          textAlign: "left",
-          fontWeight: "bold",
-          fontFamily: "Poppins_700Bold",
-          fontSize: 24,
-        },
+    <ConversationContext.Provider
+      value={{
+        conversationId: conversationId,
+        setConversationId: setConversationId,
       }}
     >
-      <Stack.Screen name="Conversations" component={Conversations} />
-      <Stack.Screen
-        name="Messages"
-        component={Messages}
-        options={({ route }) => ({
-          title: route.params?.name ?? "Messages",
-          headerTitleStyle: {
-            textAlign: "center",
-            fontFamily: "Poppins_400Regular",
-            fontSize: 20,
-            position: "absolute",
-            top: 100,
-            left: 120,
+      <Stack.Navigator
+        screenOptions={{
+          headerTintColor: "#000",
+          headerTransparent: true,
+          headerTitleAlign: "left",
+          headerStyle: {
+            height: 100,
           },
-        })}
-      />
-    </Stack.Navigator>
+          headerTitleStyle: {
+            textAlign: "left",
+            fontWeight: "bold",
+            fontFamily: "Poppins_700Bold",
+            fontSize: 24,
+          },
+        }}
+      >
+        <Stack.Screen name="Conversations" component={Conversations} />
+        <Stack.Screen
+          name="Messages"
+          component={Messages}
+          options={({ route }) => ({
+            title: route.params?.name ?? "Messages",
+            headerTitleStyle: {
+              textAlign: "center",
+              fontFamily: "Poppins_400Regular",
+              fontSize: 20,
+              position: "absolute",
+              top: 100,
+              left: 120,
+            },
+          })}
+        />
+      </Stack.Navigator>
+    </ConversationContext.Provider>
   );
 };

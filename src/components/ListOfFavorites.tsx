@@ -1,6 +1,7 @@
 import AppLoading from "expo-app-loading";
 import { useEffect, useState } from "react";
 import { FlatList, View } from "react-native";
+import { Card } from "./Card";
 
 export const ListOfFavorites = () => {
   const [cardList, setCardList] = useState(null);
