@@ -1,9 +1,12 @@
-import { Text, View } from "react-native";
+import { useHeaderHeight } from "@react-navigation/elements";
+import { SafeAreaView, Text, View } from "react-native";
+import { ListOfFavorites } from "../components/ListOfFavorites";
 
 export const Favorites = () => {
+  const headerHeight = useHeaderHeight();
   return (
-    <View>
-      <Text>Favorites screen</Text>
-    </View>
+    <SafeAreaView style={{ flex: 1, paddingTop: headerHeight }}>
+      <ListOfFavorites />
+    </SafeAreaView>
   );
 };
